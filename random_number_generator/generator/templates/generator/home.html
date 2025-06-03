@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Number Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .result {
+            font-size: 48px;
+            margin: 20px 0;
+            color: #2c3e50;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 300px;
+            margin: 10px 0;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .note {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Random Number Generator</h1>
+        <p>Generate a random number between 1 and 60</p>
+        
+        <form method="POST">
+            {% csrf_token %}
+            <div>
+                <input type="text" name="excluded_numbers" value="{{ excluded_numbers }}" 
+                       placeholder="Enter numbers to exclude (e.g., 1,2,3)">
+            </div>
+            <button type="submit">Generate Random Number</button>
+        </form>
+
+        {% if random_number %}
+        <div class="result">
+            {{ random_number }}
+        </div>
+        {% endif %}
+
+        <p class="note">Enter numbers separated by commas to exclude them from the random selection</p>
+    </div>
+</body>
+</html> 
